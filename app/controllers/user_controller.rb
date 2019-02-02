@@ -9,7 +9,11 @@ class UserController < ApplicationController
   end
 
   post '/users' do
-    @user = User.create(params[:user])
-    binding.pry
+    if params[:username].empty? || params[:password].empty? || params[:first_name].empty? || params[:last_name].empty? || params[:age].empty?
+      redirect :"/users/new"
+    else
+      @user = User.create(params)
+    end
   end
+
 end
