@@ -5,11 +5,11 @@ class UserController < ApplicationController
   end
 
   post '/users/new' do
-    @user = User.new(:username => params[:username], :password => params[:password])
-    if @user.username.nil? || @user.password_digest.nil?
-      erb :error
+    @user = User.new(:username => params[:username], :password => params[:password]) 
+    if @user.username == "" || @user.password_digest.nil?
+      erb :'/users/error'
     elsif User.exists?(username: @user.username)
-      erb :errordup
+      erb :'/users/errordup'
     else
       @user.save
       redirect '/users/login'
@@ -31,7 +31,7 @@ class UserController < ApplicationController
       session[:user_id] = @user.id
       redirect '/users'
     else
-      erb :error
+      erb :'/users/error'
     end
   end
 

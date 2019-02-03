@@ -3,8 +3,9 @@
     <h4>Destination Index</h4>
     <div class="content">
         <% if Helpers.is_logged_in?(session) %>
-            <p>User: <%= Helpers.current_user(session).username %>
+            <h5>User: <%= Helpers.current_user(session).username %> </h5>
               <% Destination.all.each do |dest|%>
+              <% if dest.user_id == session[:user_id] %>
               <p>Name: <%=dest.dest_name%></p>
               <p>Description: <%=dest.dest_description%></p>
               <button onclick="window.location='/destinations/<%=dest.id%>/edit'">Edit</button>
@@ -13,6 +14,7 @@
                 <input type="submit" value="Delete">
                 <p>----------------------------------</p>
               </form>
+              <% end %>
               <% end %><br>
             <button class="center" onclick="window.location='/destinations/new'">New Destination</button></p>
             <button class="right" onclick="window.location='/logout'">Log out</button>

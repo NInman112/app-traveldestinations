@@ -9,11 +9,9 @@ class DestinationController < ApplicationController
   end
 
   post '/destinations/new' do
-    @destination = Destination.new(:dest_name => params[:destination], :dest_description => params[:dest_desc])
-    if @destination.dest_name.nil? || @destination.dest_description.nil?
-      erb :error
-    elsif Destination.exists?(dest_name: @destination.dest_name)
-      erb :errordup
+    @destination = Destination.new(:dest_name => params[:destination], :dest_description => params[:dest_desc], :user_id => session[:user_id])
+    if @destination.dest_name == "" || @destination.dest_description == ""
+      erb :'/destinations/error'
     else
       @destination.save
       redirect '/destinations'

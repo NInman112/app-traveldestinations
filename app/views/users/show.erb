@@ -3,12 +3,33 @@
     <h4>User Info</h4>
     <div class="content">
       <% if Helpers.is_logged_in?(session) %>
-          <p>User: <%= Helpers.current_user(session).username %></p>
-          <button class="right" onclick="window.location='/logout'">Log out</button>
-          <button class="right" onclick="window.location='/destinations'">Destinations</button>
+        <h5>Current User: <%= Helpers.current_user(session).username %></h5>
+        <% Destination.all.each do |dest|%>
+          <% if dest.user_id == session[:user_id] %>
+            <p>Name: <%=dest.dest_name%></p>
+            <p>Description: <%=dest.dest_description%></p>
+            <% end %>
+          <% end %>
         <% else %>
-          <p> <%= erb :error %>
-        <% end %>
+          <%= erb :error %>
+        <% end %><br>
+        <div class="card">
+        <% User.all.each do |user| %>
+          <% if user.id != session[:user_id] %>
+            <h5><%= user.username%></h5>
+            <% Destination.all.each do |dest|%>
+              <% if dest.user_id == user.id %>
+                <p>Name: <%=dest.dest_name%></p>
+                <p>Description: <%=dest.dest_description%></p>
+                <% end %>
+            <% end %>
+          <% end  %>
+        <% end  %>
+        </div>
+        <button class="right" onclick="window.location='/logout'">Log out</button>
+        <button class="right" onclick="window.location='/destinations'">Edit Destinations</button>
+
+
     </div>
   </div>
 </div>
