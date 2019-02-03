@@ -1,17 +1,25 @@
 <div class="container">
-  <header></header>
-  <div class="col-md-8 col-md-offset-2">
-    <h2 class="card center">Destination Index</h2>
+  <div class="col-md-8 col-md-offset-2 card center">
+    <h4>Destination Index</h4>
     <div class="content">
-      <div class="content">
         <% if Helpers.is_logged_in?(session) %>
-            <p>Username: <%= Helpers.current_user(session).username %>!</p>
+            <p>User: <%= Helpers.current_user(session).username %>
+              <% Destination.all.each do |dest|%>
+              <p>Name: <%=dest.dest_name%></p>
+              <p>Description: <%=dest.dest_description%></p>
+              <button onclick="window.location='/destinations/<%=dest.id%>/edit'">Edit</button>
+              <form align="right-center"action="/destinations/<%=dest.id%>" method="post">
+                <input type="hidden" id="hidden" name ="_method" value="DELETE">
+                <input type="submit" value="Delete">
+                <p>----------------------------------</p>
+              </form>
+              <% end %><br>
+            <button class="center" onclick="window.location='/destinations/new'">New Destination</button></p>
             <button class="right" onclick="window.location='/logout'">Log out</button>
-            <button class="right" onclick="window.location='/users/show'">User Page</button>
+            <button class="right" onclick="window.location='/users'">User Page</button>
           <% else %>
             <p> <%= erb :error %>
           <% end %>
-      </div>
     </div>
   </div>
 </div>

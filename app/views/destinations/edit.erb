@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<div class="container">
+  <h3 class="card center">Create Destination</h3>
+
+    <form class="card" method="post" action="/destinations/<%=@destination.id%>">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+	    <input type="text" name="destination" value="<%=@destination.dest_name%>">
+      <input type="text" name="dest_desc" value="<%=@destination.dest_description%>">
+	    <input type="submit" value="Update Destination">
+	  </form>
+
+<p class="right"><button onclick="window.location='/users/login'">Login</button></p>
+</div>
