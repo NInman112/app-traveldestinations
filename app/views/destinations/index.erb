@@ -3,7 +3,15 @@
   <div class="col-md-8 col-md-offset-2">
     <h2 class="card center">Destination Index</h2>
     <div class="content">
-      <p></p>
+      <div class="content">
+        <% if Helpers.is_logged_in?(session) %>
+            <p>Username: <%= Helpers.current_user(session).username %>!</p>
+            <button class="right" onclick="window.location='/logout'">Log out</button>
+            <button class="right" onclick="window.location='/users/show'">User Page</button>
+          <% else %>
+            <p> <%= erb :error %>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>

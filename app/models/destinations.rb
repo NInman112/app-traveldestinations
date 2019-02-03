@@ -1,3 +1,4 @@
 class Destination < ActiveRecord::Base
-  belongs_to :user
+  has_many :user_dests
+  has_many :users, through: :user_dests
 end

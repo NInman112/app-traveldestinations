@@ -1,0 +1,16 @@
+
+<div class="container">
+  <header></header>
+  <div class="col-md-8 col-md-offset-2 card center">
+    <h4>User Info</h4>
+    <div class="content">
+      <% if Helpers.is_logged_in?(session) %>
+          <p>Username: <%= Helpers.current_user(session).username %>!</p>
+          <button class="right" onclick="window.location='/logout'">Log out</button>
+          <button class="right" onclick="window.location='/destinations'">Destinations</button>
+        <% else %>
+          <p> <%= erb :error %>
+        <% end %>
+    </div>
+  </div>
+</div>
