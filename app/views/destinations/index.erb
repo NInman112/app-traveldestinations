@@ -1,27 +1,26 @@
 <div class="container">
-  <div class="col-md-8 col-md-offset-2 card center">
-    <h4>Destination Index</h4>
-    <div class="content">
+    <h4 class="card center">Destination Index</h4>
+    <div class="card">
         <% if Helpers.is_logged_in?(session) %>
-            <h5>User: <%= Helpers.current_user(session).username %> </h5>
-              <% Destination.all.each do |dest|%>
-              <% if dest.user_id == session[:user_id] %>
-              <p>Name: <%=dest.dest_name%></p>
-              <p>Description: <%=dest.dest_description%></p>
-              <button onclick="window.location='/destinations/<%=dest.id%>/edit'">Edit</button>
-              <form align="right-center"action="/destinations/<%=dest.id%>" method="post">
-                <input type="hidden" id="hidden" name ="_method" value="DELETE">
-                <input type="submit" value="Delete">
-                <p>----------------------------------</p>
-              </form>
-              <% end %>
-              <% end %><br>
-            <button class="center" onclick="window.location='/destinations/new'">New Destination</button></p>
-            <button class="right" onclick="window.location='/logout'">Log out</button>
-            <button class="right" onclick="window.location='/users'">User Page</button>
-          <% else %>
-            <p> <%= erb :error %>
-          <% end %>
-    </div>
-  </div>
+          <h5>User: <%= Helpers.current_user(session).username %> </h5>
+            <% Destination.all.each do |dest|%>
+            <% if dest.user_id == session[:user_id] %>
+            <p>Name: <%=dest.dest_name%></p>
+            <p>Description: <%=dest.dest_description%></p>
+            <button class="button3 button" onclick="window.location='/destinations/<%=dest.id%>/edit'">Edit</button>
+            <form align="right-center"action="/destinations/<%=dest.id%>" method="post">
+              <input type="hidden" id="hidden" name ="_method" value="DELETE">
+              <input type="submit" value="Delete">
+              <p align="center">---------------------------------------------------------------------------</p>
+            </form>
+            <% end %>
+            <% end %>
+            <br>
+          <button class="center button" onclick="window.location='/destinations/new'">New Destination</button></p>
+          <button class="right button" onclick="window.location='/logout'">Log out</button>
+          <button class="right button" onclick="window.location='/users'">User Page</button>
+          </div>
+        <% else %>
+          <p> <%= erb :error %>
+        <% end %>
 </div>

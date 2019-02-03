@@ -1,7 +1,6 @@
 <div class="container">
-  <div class="col-md-8 col-md-offset-2 card center">
-    <h4>User Info</h4>
-    <div class="content">
+    <h4 class="card center">User Info</h4>
+    <div class="card">
       <% if Helpers.is_logged_in?(session) %>
         <h5>Current User: <%= Helpers.current_user(session).username %></h5>
         <% Destination.all.each do |dest|%>
@@ -26,10 +25,7 @@
           <% end  %>
         <% end  %>
         </div>
-        <button class="right" onclick="window.location='/logout'">Log out</button>
-        <button class="right" onclick="window.location='/destinations'">Edit Destinations</button>
-
-
-    </div>
+        <button class="right button" onclick="window.location='/logout'">Log out</button>
+        <button class="right button" onclick="window.location='/destinations'">Edit Destinations</button>
   </div>
 </div>

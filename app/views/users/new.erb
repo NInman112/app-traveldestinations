@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <div class="container">
   <h3 class="card center">Create User</h3>
-    <form class="card" method="post" action="/users/new">
+    <form method="post" action="/users/new">
+      <div class="card">
 	    <input type="text" name="username" placeholder="Username:">
       <input type="password" name="password" placeholder="Password:">
+      </div>
 	    <input type="submit" value="Create Account">
 	  </form>
-<p class="right"><button onclick="window.location='/users/login'">Login</button></p>
+<p class="right"><button class="button" onclick="window.location='/users/login'">Login</button></p>
 </div>

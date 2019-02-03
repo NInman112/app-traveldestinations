@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <div class="container">
   <h3 class="card center">Create Destination</h3>
-    <form class="card" method="post" action="/destinations/new">
+    <form method="post" action="/destinations/new">
+      <div class="card">
 	    <input type="text" name="destination" placeholder="Destination:">
       <input type="text" name="dest_desc" placeholder="Description:">
+      </div>
 	    <input type="submit" value="Create Destination">
 	  </form>
 <p class="right"><button onclick="window.location='/users/login'">Login</button></p>
