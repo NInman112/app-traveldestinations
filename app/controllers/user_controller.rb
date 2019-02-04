@@ -5,7 +5,7 @@ class UserController < ApplicationController
   end
 
   post '/users/new' do
-    @user = User.new(:username => params[:username], :password => params[:password]) 
+    @user = User.new(:username => params[:user][:username], :password => params[:user][:password])
     if @user.username == "" || @user.password_digest.nil?
       erb :'/users/error'
     elsif User.exists?(username: @user.username)

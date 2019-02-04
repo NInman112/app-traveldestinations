@@ -9,7 +9,9 @@ class DestinationController < ApplicationController
   end
 
   post '/destinations/new' do
-    @destination = Destination.new(:dest_name => params[:destination], :dest_description => params[:dest_desc], :user_id => session[:user_id])
+    @destination = Destination.new(:dest_name => params[:dest][:destination], :dest_description => params[:dest][:dest_desc], :user_id => session[:user_id])
+    @destination.user = @user = User.find(session[:user_id]) #dont think this is needed..
+
     if @destination.dest_name == "" || @destination.dest_description == ""
       erb :'/destinations/error'
     else
